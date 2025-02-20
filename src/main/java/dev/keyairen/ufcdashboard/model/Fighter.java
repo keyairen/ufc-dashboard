@@ -2,6 +2,8 @@ package dev.keyairen.ufcdashboard.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Fighter {
 
@@ -13,6 +15,9 @@ public class Fighter {
     private Long totalWins;
     private Long totalLosses;
     private Long totalDraws;
+
+    @Transient
+    private List<Fight> fights;
 
     public Fighter(String fighterName, Long totalFights, Long totalWins, Long totalLosses) {
         this.fighterName = fighterName;
@@ -81,5 +86,13 @@ public class Fighter {
 
     public void setTotalDraws(Long totalDraws) {
         this.totalDraws = totalDraws;
+    }
+
+    public List<Fight> getFights() {
+        return fights;
+    }
+
+    public void setFights(List<Fight> fights) {
+        this.fights = fights;
     }
 }
