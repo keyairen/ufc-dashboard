@@ -44,6 +44,7 @@ public class FightDataProcessor implements ItemProcessor<FightInput, Fight> {
         fight.setRedWeightLbs(Integer.parseInt(fightInput.getRedWeightLbs()));
         fight.setRedAge(Integer.parseInt(fightInput.getRedAge()));
         fight.setBlueAge(Integer.parseInt(fightInput.getBlueAge()));
+        fight.setFinish(fightInput.getFinish());
         fight.setFinishDetails(fightInput.getFinishDetails());
 
         return fight;
