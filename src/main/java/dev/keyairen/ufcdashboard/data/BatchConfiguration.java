@@ -1,11 +1,8 @@
 package dev.keyairen.ufcdashboard.data;
 
-import dev.keyairen.ufcdashboard.data.FightDataProcessor;
-import dev.keyairen.ufcdashboard.data.FightInput;
 import dev.keyairen.ufcdashboard.model.Fight;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -16,7 +13,6 @@ import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -58,14 +54,9 @@ public class BatchConfiguration {
     };
 
     @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
-    }
-
-    @Bean
     public FlatFileItemReader<FightInput> reader() {
         return new FlatFileItemReaderBuilder<FightInput>()
-                .name("personItemReader")
+                .name("FightItemReader")
                 .resource(new ClassPathResource("fight-data.csv"))
                 .delimited()
                 .names(FIELD_NAMES)
@@ -97,7 +88,7 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Step step1(JobRepository jobRepository, DataSourceTransactionManager transactionManager,
+    public Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager,
                       FlatFileItemReader<FightInput> reader, FightDataProcessor processor, JdbcBatchItemWriter<Fight> writer) {
         return new StepBuilder("step1", jobRepository)
                 .<FightInput, Fight>chunk(3, transactionManager)
