@@ -1,19 +1,20 @@
 package dev.keyairen.ufcdashboard.Repository;
 
 import dev.keyairen.ufcdashboard.model.Fight;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface FightRepository extends CrudRepository<Fight, Long> {
+public interface FightRepository extends JpaRepository<Fight, Long> {
 
     List<Fight> getByRedFighterOrBlueFighterOrderByDateDesc(String redFighter, String blueFighter, Pageable pageable);
+
+    List<Fight> getFightsByEventName(String eventName);
 
     @Query(
             "select f from Fight f where (f.redFighter = :fighterName or f.blueFighter = :fighterName)"
@@ -26,4 +27,5 @@ public interface FightRepository extends CrudRepository<Fight, Long> {
     default List<Fight> findLatestFightsByFighter(String fighterName, int count) {
         return getByRedFighterOrBlueFighterOrderByDateDesc(fighterName, fighterName, PageRequest.of(0, count));
     }
+
 }
