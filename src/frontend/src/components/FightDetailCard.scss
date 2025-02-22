@@ -1,0 +1,22 @@
+.FightDetailCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+
+  .fight-location {
+    margin-bottom: 10px;
+  }
+
+  .fight-result, .opponent {
+    margin-top: 10px;
+  }
+
+  .additional-detail {
+    text-align: right;
+    & > p {
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+.FighterPage {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1rf 1rf 1rf;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
+  .fighter-name-section {
+    grid-column: span 3;
+    justify-self: start;
+    align-self: end;
+  }
+
+  .fighter-name {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  .win-loss-section {
+    justify-self: center;
+    align-content: center;
+  }
+
+  .win-loss-text {
+    display: flex;
+    justify-content: space-around;
+
+    .wins {
+      color: #48955a;
+    }
+
+    .losses {
+      color: #954848;
+    }
+  }
+
+  .fight-detail-section {
+    grid-column: span 4;
+  }
+
+  .more-link {
+    align-self: center;
+    justify-self: center;
+    font-size: 1.5rem;
+  }
+
+}

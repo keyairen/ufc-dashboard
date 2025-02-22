@@ -1,13 +1,16 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {useParams} from 'react-router-dom';
+import {useEffect, useState} from 'react';
 import {FightDetailCard} from "../components/FightDetailCard";
 import {FightSmallCard} from "../components/FightSmallCard";
+
+import './FighterPage.scss';
+
 
 export const FighterPage = () => {
 
     const [fighter, setFighter] = useState({fights: []});
-    const { fighterName } = useParams();
+    const {fighterName} = useParams();
     useEffect(
         () => {
             const fetchFights = async () => {
@@ -19,7 +22,6 @@ export const FighterPage = () => {
             fetchFights();
 
 
-
         }, [fighterName]
     );
 
@@ -29,9 +31,24 @@ export const FighterPage = () => {
 
     return (
         <div className="FighterPage">
-            <h1>{fighter.fighterName}</h1>
-            <FightDetailCard fighterName={fighter.fighterName} fight={fighter.fights[0]}/>
-            {fighter.fights.slice(1).map(fight => <FightSmallCard fighterName={fighter.fighterName} fight={fight} />)}
+            <div className="fighter-name-section">
+                <h1 className="fighter-name">{fighter.fighterName}</h1>
+            </div>
+            <div className="win-loss-section">
+                <h3>Wins / Losses</h3>
+                <div className="win-loss-text">
+                    <h4 className="wins">{fighter.totalWins}</h4>
+                    <h4 className="losses">{fighter.totalLosses}</h4>
+                </div>
+            </div>
+            <div className="fight-detail-section">
+                <h3>Latest Fights</h3>
+                <FightDetailCard fighterName={fighter.fighterName} fight={fighter.fights[0]}/>
+            </div>
+            {fighter.fights.slice(1).map(fight => <FightSmallCard fighterName={fighter.fighterName} fight={fight}/>)}
+            <div className="more-link">
+                <a href="#">More ></a>
+            </div>
         </div>
     );
 }
