@@ -1,5 +1,6 @@
 package dev.keyairen.ufcdashboard.data;
 
+import dev.keyairen.ufcdashboard.model.Event;
 import dev.keyairen.ufcdashboard.model.Fighter;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +58,18 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
             fighterData.values().forEach(em::persist);
             fighterData.values().forEach(System.out::println);
             System.out.println("FIGHTER SIZE: " + fighterData.size());
+
+            Map<String, Event> eventData = new HashMap<>();
+
+            em.createQuery("select distinct f.eventName, f.location, f.date FROM Fight f", Object[].class)
+                    .getResultList()
+                    .stream()
+                    .map(e -> new Event((String) e[0], (String) e[1], (LocalDate) e[2]))
+                    .forEach(event -> eventData.put(event.getEventName(), event));
+
+            eventData.values().forEach(em::persist);
+            eventData.values().forEach(System.out::println);
+            System.out.println("EVENT SIZE: " + eventData.size());
         }
     }
 }
