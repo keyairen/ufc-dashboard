@@ -7,6 +7,7 @@ export const FightDetailCard = ({fighterName, fight}) => {
     if (!fight) return null;
     const otherFighter = fight.redFighter === fighterName ? fight.blueFighter : fight.redFighter;
     const otherFighterRoute = "/fighters/" + otherFighter;
+    const eventRoute = "/events/" + fight.eventName;
     const winner = fight.winner === "Blue" ? fight.blueFighter : fight.redFighter;
     const isWinner = fighterName === winner;
     const result = fighterName === winner ? "won" : "lost";
@@ -18,7 +19,7 @@ export const FightDetailCard = ({fighterName, fight}) => {
         <div className={isWinner ? 'FightDetailCard won-card' : 'FightDetailCard lost-card'}>
             <div>
                 <h3 className="fight-date">{fight.date}</h3>
-                <h2 className="fight-event-name">{fight.eventName}</h2>
+                <h2 className="fight-event-name"><Link to={eventRoute}>{fight.eventName}</Link></h2>
                 <h3 className="fight-location">{fight.location}</h3>
                 <span className="vs">vs</span>
                 <h1 className="opponent"><Link to={otherFighterRoute}>{otherFighter}</Link></h1>
