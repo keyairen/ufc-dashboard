@@ -13,7 +13,7 @@ function App() {
                     <Route path="/fighters/:fighterName" element={<FighterPage/>}/>
                     <Route path="/fighters/:fighterName/fights/:year" element={<FightPage/>}/>
                     <Route path="/events/:eventName" element={<EventPage/>}/>
-                    <Route path="/home" element={<HomePage/>}/>
+                    <Route path="" element={<HomePage/>}/>
                 </Routes>
             </Router>
         </div>
