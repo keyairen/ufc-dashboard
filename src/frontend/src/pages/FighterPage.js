@@ -45,9 +45,10 @@ export const FighterPage = () => {
                 <h3>Latest Fights</h3>
                 <FightDetailCard fighterName={fighter.fighterName} fight={fighter.fights[0]}/>
             </div>
-            {fighter.fights.slice(1).map(fight => <FightSmallCard fighterName={fighter.fighterName} fight={fight}/>)}
+            {fighter.fights.slice(1).map(fight => <FightSmallCard key={fight.id} fighterName={fighter.fighterName}
+                                                                  fight={fight}/>)}
             <div className="more-link">
-                <Link to={`/fighters/${fighterName}/fights/${fighter.fights[0].date.slice(0,4)}`}>More ></Link>
+                <Link to={`/fighters/${fighterName}/fights/${fighter.fights[0].date.slice(0, 4)}`}>More ></Link>
             </div>
         </div>
     );

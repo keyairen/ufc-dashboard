@@ -1,6 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {useParams} from 'react-router-dom';
+import {useEffect, useState} from 'react';
 import {FightDetailCard} from "../components/FightDetailCard";
 
 import './FightPage.scss';
@@ -10,18 +10,18 @@ export const FightPage = () => {
 
 
     const [fights, setFights] = useState([]);
-    const { fighterName, year } = useParams();
+    const {fighterName, year} = useParams();
 
     useEffect(() => {
-        const fetchFights = async () => {
-            const response = await fetch(`http://localhost:8080/fighter/${fighterName}/fights?year=${year}`);
-            const data = await response.json();
-            setFights(data);
+            const fetchFights = async () => {
+                const response = await fetch(`http://localhost:8080/fighter/${fighterName}/fights?year=${year}`);
+                const data = await response.json();
+                setFights(data);
 
-        };
-        fetchFights();
+            };
+            fetchFights();
 
-    }, [fighterName, year]
+        }, [fighterName, year]
     );
 
 
@@ -32,8 +32,8 @@ export const FightPage = () => {
                 <YearSelector fighterName={fighterName}/>
             </div>
             <div>
-            <h1>{fighterName} fights in {year}</h1>
-            {fights.map(fight => <FightDetailCard fighterName={fighterName} fight={fight} />)}
+                <h1>{fighterName} fights in {year}</h1>
+                {fights.map(fight => <FightDetailCard key={fight.id} fighterName={fighterName} fight={fight}/>)}
             </div>
         </div>
     );

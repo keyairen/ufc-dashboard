@@ -21,7 +21,7 @@ export const EventPage = () => {
 
             };
             fetchEvent();
-        }, []
+        }, [eventName]
     );
 
     return (
@@ -31,7 +31,7 @@ export const EventPage = () => {
                 <h2>{event.eventDate}</h2>
                 <h2>{event.eventLocation}</h2>
             </div>
-            {event.eventFights.map(fight => <FightDetailCardEvent fight={fight}/>)}
+            {event.eventFights.map(fight => <FightDetailCardEvent key={fight.id} fight={fight}/>)}
         </div>
     );
 }

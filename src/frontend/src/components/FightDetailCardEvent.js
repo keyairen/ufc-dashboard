@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import './FightDetailCardEvent.scss';
 
@@ -9,7 +9,7 @@ export const FightDetailCardEvent = ({fight}) => {
     const redFighter = fight.redFighter;
     const blueFighter = fight.blueFighter
     const winner = fight.winner === "Blue" ? fight.blueFighter : fight.redFighter;
-    const finishDetails = fight.finishDetails === "" ? "" : "("+fight.finishDetails+")";
+    const finishDetails = fight.finishDetails === "" ? "" : "(" + fight.finishDetails + ")";
     const titleBout = fight.titleBout === true ? "Yes" : "No";
 
     return (

@@ -29,7 +29,7 @@ export const HomePage = () => {
                 <h1 className="app-name">UFC Dashboard</h1>
             </div>
             <div className="event-grid">
-                {events.map(event => <EventTile eventName={event.eventName}/>)}
+                {events.map(event => <EventTile key={event.id} eventName={event.eventName}/>)}
             </div>
         </div>
     );

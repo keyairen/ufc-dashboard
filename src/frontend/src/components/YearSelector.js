@@ -16,7 +16,7 @@ export const YearSelector = ({fighterName}) => {
     return (
         <ol className="YearSelector">
             {years.map(year => (
-                <li>
+                <li key={year}>
                     <Link to={`/fighters/${fighterName}/fights/${year}`}>{year}</Link>
                 </li>
             ))}
