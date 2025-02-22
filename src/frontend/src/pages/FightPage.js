@@ -2,7 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {FightDetailCard} from "../components/FightDetailCard";
-import {FightSmallCard} from "../components/FightSmallCard";
+
+import './FightPage.scss';
+import {YearSelector} from "../components/YearSelector";
 
 export const FightPage = () => {
 
@@ -19,16 +21,20 @@ export const FightPage = () => {
         };
         fetchFights();
 
-    }, []
+    }, [fighterName, year]
     );
 
 
     return (
         <div className="FightPage">
-            <h1>Fight Page</h1>
-            {
-                fights.map(fight => <FightDetailCard fighterName={fighterName} fight={fight} />)
-            }
+            <div className="year-selector">
+                <h3>Select Year</h3>
+                <YearSelector fighterName={fighterName}/>
+            </div>
+            <div>
+            <h1>{fighterName} fights in {year}</h1>
+            {fights.map(fight => <FightDetailCard fighterName={fighterName} fight={fight} />)}
+            </div>
         </div>
     );
 }

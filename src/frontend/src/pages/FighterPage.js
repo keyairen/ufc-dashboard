@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {FightDetailCard} from "../components/FightDetailCard";
 import {FightSmallCard} from "../components/FightSmallCard";
@@ -47,7 +47,7 @@ export const FighterPage = () => {
             </div>
             {fighter.fights.slice(1).map(fight => <FightSmallCard fighterName={fighter.fighterName} fight={fight}/>)}
             <div className="more-link">
-                <a href="#">More ></a>
+                <Link to={`/fighters/${fighterName}/fights/${fighter.fights[0].date.slice(0,4)}`}>More ></Link>
             </div>
         </div>
     );
