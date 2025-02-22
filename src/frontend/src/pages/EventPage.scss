@@ -1,0 +1,21 @@
+.EventPage {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-row-gap: 10px;
+
+  .event-name {
+    font-size: 1.5rem;
+    justify-self: start;
+    align-self: end;
+  }
+
+  .event-date-location {
+    font-size: .75rem;
+    justify-self: end;
+    align-self: center;
+  }
+
+  .event-list {
+    grid-column: span 2;
+  }
+}

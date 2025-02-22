@@ -26,12 +26,16 @@ export const EventPage = () => {
 
     return (
         <div className="EventPage">
-            <div className="event-header-section">
+            <div className="event-name">
                 <h1>{eventName}</h1>
+            </div>
+            <div className="event-date-location">
                 <h2>{event.eventDate}</h2>
                 <h2>{event.eventLocation}</h2>
             </div>
-            {event.eventFights.map(fight => <FightDetailCardEvent key={fight.id} fight={fight}/>)}
+            <div className="event-list">
+                {event.eventFights.map(fight => <FightDetailCardEvent key={fight.id} fight={fight}/>)}
+            </div>
         </div>
     );
 }
